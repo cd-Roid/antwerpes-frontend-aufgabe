@@ -135,53 +135,53 @@ class App extends Component {
       <div className="App">
         <section>
           <h2>Frage 1?</h2>
-          <button name="1-j" onClick={this.setAnswer}>ja</button>
-          <button name ="1-n" onClick={this.setAnswer} >nein</button>
+          <button name="1-j" onClick={this.setAnswer} className="button">ja</button>
+          <button name ="1-n" onClick={this.setAnswer} className="button">nein</button>
         </section>
 
         <section>
           <h2>Frage 2?</h2>
-          <button name="2-j" onClick={this.setAnswer}>ja</button>
-          <button name="2-n" onClick={this.setAnswer}>nein</button>
+          <button name="2-j" onClick={this.setAnswer} className="button">ja</button>
+          <button name="2-n" onClick={this.setAnswer} className="button">nein</button>
         </section>
 
         <section>
           <h2>Frage 3?</h2>
-          <button name="3-j" onClick={this.setAnswer}>ja</button>
-          <button name="3-n" onClick={this.setAnswer}>nein</button>
+          <button name="3-j" onClick={this.setAnswer} className="button">ja</button>
+          <button name="3-n" onClick={this.setAnswer} className="button">nein</button>
         </section>
 
         <section>
           <h2>Frage4?</h2>
-          <button name="4-j" onClick={this.setAnswer}>ja</button>
-          <button name="4-n" onClick={this.setAnswer}>nein</button>
+          <button name="4-j" onClick={this.setAnswer} className="button">ja</button>
+          <button name="4-n" onClick={this.setAnswer} className="button">nein</button>
         </section>
 
         <section>
           <h2>Frage 5?</h2>
-          <button name="5-j" onClick={this.setAnswer}>ja</button>
-          <button name="5-n" onClick={this.setAnswer}>nein</button>
+          <button name="5-j" onClick={this.setAnswer} className="button">ja</button>
+          <button name="5-n" onClick={this.setAnswer} className="button">nein</button>
         </section>
 
         <div>
-          <button name="auswerten" onClick={this.showStats}>Auswerten</button>
+          <button name="auswerten" onClick={this.showStats} className="button__submit">Auswerten</button>
         </div>
 
-        <section name="stats-page" className={this.state.showPage? "stats": "stats-hidden"}>
-            <div>
+        <section name="stats-page" className= {this.state.showPage? "stats": "stats-hidden"}>
+            <div className="calculated__yes">
               <p>Anzahl Fragen, die mit ja beantwortet wurden</p>
               <div>{this.state.calculatedYes}</div>
             </div>
 
-            <div>
+            <div className="calculated__no">
             <p>Anzahl Fragen, die mit nein beantwortet wurden</p>
             <div>{this.state.calculatedNo}</div>
             </div>
-            <div>
+            <div className="answers__yes">
               <p> Fragen die mit ja beantwortet wurden</p>
               <div>{this.state.yesArray.map(el => {return el + ' '})}</div>
             </div>
-            <div>
+            <div className="answers__no">
               <p> Fragen die mit nein beantwortet wurden</p>
               <div>{this.state.noArray}</div>
             </div>

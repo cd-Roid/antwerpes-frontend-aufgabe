@@ -14,39 +14,65 @@ class App extends Component {
         answer4: '',
         answer5: '',
       },
+      yesArray: [],
+      noArray: [],
       calculatedYes: 0,
       calculatedNo: 0,
       showPage: false
     }   
   }
 
-  setCalculatedYes = () => {
-    if(this.state.calculatedNo > 0){
+  setCalculatedYes = (answer) => {
+    let yesArray = this.state.yesArray;
+    let noArray = this.state.noArray;
+    let index = 0;
+    console.log(yesArray)
+    if(this.state.calculatedNo >= 1){
       this.setState({calculatedYes: this.state.calculatedYes+1});
-      this.setState({calculatedNo: this.state.calculatedNo-1});  
+      yesArray.push(answer);
+      this.setState({yesArray: yesArray});
+      index = noArray.indexOf(answer);
+      noArray.slice(index,1);
+      this.setState({calculatedNo: this.state.calculatedNo-1});
     }else{
       this.setState({calculatedYes: this.state.calculatedYes+1});
+      yesArray.push(answer);
+      this.setState({yesArray: yesArray});
     }
   }
   
-  setCalculatedNo = () => {
-    if(this.state.calculatedYes > 0){
+  setCalculatedNo = (answer) => {
+    let yesArray = this.state.yesArray;
+    let noArray = this.state.noArray;
+    let index = 0;
+
+    if(this.state.calculatedYes >= 1){
       this.setState({calculatedNo: this.state.calculatedNo+1});
-      this.setState({calculatedYes: this.state.calculatedYes-1});  
+      noArray.push(answer);
+      this.setState({noArray: noArray});
+      index = yesArray.indexOf(answer);
+      yesArray.slice(index,1); 
+      this.setState({yesArray: yesArray});
+      this.setState({calculatedYes: this.state.calculatedYes-1});
     }else{
       this.setState({calculatedNo: this.state.calculatedNo+1});
+      noArray.push(answer);
+      this.setState({noArray: noArray});
     }
   }
   showStats = () => {
     this.setState({showPage: true});
+    this.showYes();
   }
 
   showYes = () => {
     let answers = this.state.answers;
-
-    answers.array.forEach(element => {
-      
-    });
+    let yes = [];
+    let no = {};
+      console.log(answers);
+      Object.keys(this.state.answers).map(
+        el => console.log(el)
+      )
   }
   
    setAnswer = (event) => {
@@ -54,43 +80,43 @@ class App extends Component {
       switch (target) {
         case '1-j': 
           this.setState({ answers: {...this.state.answers, answer1: true}});
-          this.setCalculatedYes();
+          this.setCalculatedYes("answer1");
           break;
         case '2-j': 
           this.setState({ answers: {...this.state.answers, answer2: true}});
-          this.setCalculatedYes();
+          this.setCalculatedYes("answer2");
           break;
         case '3-j': 
           this.setState({ answers: {...this.state.answers, answer3: true}});
-          this.setCalculatedYes();
+          this.setCalculatedYes("answer3");
           break;
         case '4-j': 
           this.setState({ answers: {...this.state.answers, answer4: true}});
-          this.setCalculatedYes();
+          this.setCalculatedYes("answer4");
           break;
         case '5-j': 
           this.setState({ answers: {...this.state.answers, answer5: true}});
-          this.setCalculatedYes();
+          this.setCalculatedYes("answer5");
           break;
         case '1-n': 
           this.setState({ answers: {...this.state.answers, answer1: false}});
-          this.setCalculatedNo();
+          this.setCalculatedNo("answer1");
           break;
         case '2-n': 
           this.setState({ answers: {...this.state.answers, answer2: false}});
-          this.setCalculatedNo();
+          this.setCalculatedNo("answer2");
           break;
         case '3-n': 
           this.setState({ answers: {...this.state.answers, answer3: false}});
-          this.setCalculatedNo();
+          this.setCalculatedNo("answer3");
           break;
         case '4-n': 
           this.setState({ answers: {...this.state.answers, answer4: false}});
-          this.setCalculatedNo();
+          this.setCalculatedNo("answer4");
           break;
         case '5-n': 
           this.setState({ answers: {...this.state.answers, answer5: false}});
-          this.setCalculatedNo();
+          this.setCalculatedNo("answer5");
           break;
      
         case 'auswerten': 
@@ -153,14 +179,13 @@ class App extends Component {
             </div>
             <div>
               <p> Fragen die mit ja beantwortet wurden</p>
-              <div></div>
+              <div>{this.state.yesArray.map(el => {return el + ' '})}</div>
             </div>
             <div>
-              <p> Fragen die mit ja beantwortet wurden</p>
-              <div></div>
+              <p> Fragen die mit nein beantwortet wurden</p>
+              <div>{this.state.noArray}</div>
             </div>
         </section>
-      
       </div>
     )
   }

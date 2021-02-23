@@ -6,7 +6,7 @@
  ### Functionality 
   - [X] 5 Buttons mit ja oder nein 
   - [X] sie sollten alle interactive sein 
-  - [] wenn ein Button geclickt wird, wird diese grün
+  - [ ] wenn ein Button geclickt wird, wird diese grün
   - [X] Antworten müssen in ein Array gespeichert werden
   - [X] Antworten sollten wechselbar sein
   - [ ] Auswerten Button sollte betätigt werden können sobald alle Fragen beantwortet sind (inactive until all answers)

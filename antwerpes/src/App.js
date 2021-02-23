@@ -7,11 +7,13 @@ class App extends Component {
     super(props)
     
     this.state = {
-      answer1: '', 
-      answer2: '',
-      answer3: '',
-      answer4: '',
-      answer5: '',
+      answers: {
+        answer1: '', 
+        answer2: '',
+        answer3: '',
+        answer4: '',
+        answer5: '',
+      },
       calculatedYes: 0,
       calculatedNo: 0,
       showPage: false
@@ -38,48 +40,56 @@ class App extends Component {
   showStats = () => {
     this.setState({showPage: true});
   }
+
+  showYes = () => {
+    let answers = this.state.answers;
+
+    answers.array.forEach(element => {
+      
+    });
+  }
   
    setAnswer = (event) => {
     let target = event.target.name;
       switch (target) {
         case '1-j': 
-          this.setState({answer1: true});
+          this.setState({ answers: {...this.state.answers, answer1: true}});
           this.setCalculatedYes();
           break;
         case '2-j': 
-          this.setState({answer2: true});
+          this.setState({ answers: {...this.state.answers, answer2: true}});
           this.setCalculatedYes();
           break;
         case '3-j': 
-          this.setState({answer3: true});
+          this.setState({ answers: {...this.state.answers, answer3: true}});
           this.setCalculatedYes();
           break;
         case '4-j': 
-          this.setState({answer4: true});
+          this.setState({ answers: {...this.state.answers, answer4: true}});
           this.setCalculatedYes();
           break;
         case '5-j': 
-          this.setState({answer5: true});
+          this.setState({ answers: {...this.state.answers, answer5: true}});
           this.setCalculatedYes();
           break;
         case '1-n': 
-          this.setState({answer1: false});
+          this.setState({ answers: {...this.state.answers, answer1: false}});
           this.setCalculatedNo();
           break;
         case '2-n': 
-          this.setState({answer2: false});
+          this.setState({ answers: {...this.state.answers, answer2: false}});
           this.setCalculatedNo();
           break;
         case '3-n': 
-          this.setState({answer3: false});
+          this.setState({ answers: {...this.state.answers, answer3: false}});
           this.setCalculatedNo();
           break;
         case '4-n': 
-          this.setState({answer4: false});
+          this.setState({ answers: {...this.state.answers, answer4: false}});
           this.setCalculatedNo();
           break;
         case '5-n': 
-          this.setState({answer5: false});
+          this.setState({ answers: {...this.state.answers, answer5: false}});
           this.setCalculatedNo();
           break;
      

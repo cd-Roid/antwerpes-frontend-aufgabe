@@ -14,3 +14,7 @@
   - [ ] 4 Textelemente erscheinen nach "Auswertung"
   - [ ] optional Data Visualization with Graph
     
+
+## Mockup
+
+![](https://github.com/cd-Roid/antwerpes-frontend-aufgabe/blob/main/antwerpes-mockup.PNG?raw=true)

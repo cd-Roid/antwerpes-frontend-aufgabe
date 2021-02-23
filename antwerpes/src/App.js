@@ -7,18 +7,91 @@ class App extends Component {
     super(props)
     
     this.state = {
-      answer1: false, 
-      answer2: false,
-      answer3: false,
-      answer4: false,
-      answer5: false
+      answer1: '', 
+      answer2: '',
+      answer3: '',
+      answer4: '',
+      answer5: '',
+      calculatedYes: 0,
+      calculatedNo: 0,
+      showPage: false
     }   
+  }
+
+  setCalculatedYes = () => {
+    if(this.state.calculatedNo > 0){
+      this.setState({calculatedYes: this.state.calculatedYes+1});
+      this.setState({calculatedNo: this.state.calculatedNo-1});  
+    }else{
+      this.setState({calculatedYes: this.state.calculatedYes+1});
+    }
+  }
+  
+  setCalculatedNo = () => {
+    if(this.state.calculatedYes > 0){
+      this.setState({calculatedNo: this.state.calculatedNo+1});
+      this.setState({calculatedYes: this.state.calculatedYes-1});  
+    }else{
+      this.setState({calculatedNo: this.state.calculatedNo+1});
+    }
+  }
+  showStats = () => {
+    this.setState({showPage: true});
   }
   
    setAnswer = (event) => {
     let target = event.target.name;
-    console.log(target);
+      switch (target) {
+        case '1-j': 
+          this.setState({answer1: true});
+          this.setCalculatedYes();
+          break;
+        case '2-j': 
+          this.setState({answer2: true});
+          this.setCalculatedYes();
+          break;
+        case '3-j': 
+          this.setState({answer3: true});
+          this.setCalculatedYes();
+          break;
+        case '4-j': 
+          this.setState({answer4: true});
+          this.setCalculatedYes();
+          break;
+        case '5-j': 
+          this.setState({answer5: true});
+          this.setCalculatedYes();
+          break;
+        case '1-n': 
+          this.setState({answer1: false});
+          this.setCalculatedNo();
+          break;
+        case '2-n': 
+          this.setState({answer2: false});
+          this.setCalculatedNo();
+          break;
+        case '3-n': 
+          this.setState({answer3: false});
+          this.setCalculatedNo();
+          break;
+        case '4-n': 
+          this.setState({answer4: false});
+          this.setCalculatedNo();
+          break;
+        case '5-n': 
+          this.setState({answer5: false});
+          this.setCalculatedNo();
+          break;
+     
+        case 'auswerten': 
+          console.log(JSON.stringify(this.state));
+
+          break;
+      
+        default: throw new Error("No target given")
+      }
   }
+
 
   render(){
 
@@ -55,8 +128,28 @@ class App extends Component {
         </section>
 
         <div>
-          <button name="auswerten" onClick={this.setAnswer}>Auswerten</button>
+          <button name="auswerten" onClick={this.showStats}>Auswerten</button>
         </div>
+
+        <section name="stats-page" className={this.state.showPage? "stats": "stats-hidden"}>
+            <div>
+              <p>Anzahl Fragen, die mit ja beantwortet wurden</p>
+              <div>{this.state.calculatedYes}</div>
+            </div>
+
+            <div>
+            <p>Anzahl Fragen, die mit nein beantwortet wurden</p>
+            <div>{this.state.calculatedNo}</div>
+            </div>
+            <div>
+              <p> Fragen die mit ja beantwortet wurden</p>
+              <div></div>
+            </div>
+            <div>
+              <p> Fragen die mit ja beantwortet wurden</p>
+              <div></div>
+            </div>
+        </section>
       
       </div>
     )
